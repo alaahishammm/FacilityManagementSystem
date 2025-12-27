@@ -1,0 +1,6 @@
+@FacilityManagementSystem_HostAddress = http://localhost:5155
+
+GET {{FacilityManagementSystem_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
