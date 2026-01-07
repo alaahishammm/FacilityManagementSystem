@@ -1,4 +1,5 @@
 ﻿using FacilityManagementSystem.Application.DTOs.RequestDto;
+using FacilityManagementSystem.Domain.Entities;
 
 namespace FacilityManagementSystem.Application.Interfaces;
     public interface IMaintenanceRequestService
@@ -6,8 +7,7 @@ namespace FacilityManagementSystem.Application.Interfaces;
     Task<RequestReadDto> GetByIdAsync(int id);
     Task<IEnumerable<RequestReadDto>> GetAllAsync();
 
-    Task CreateAsync(RequestCreateDto request);
-   
+    Task<RequestReadDto> CreateAsync(RequestCreateDto dto);
     Task DeleteAsync(int id);  
     Task<IEnumerable<RequestReadDto>> GetByUserIdAsync(int userId);
     Task<IEnumerable<RequestReadDto>> GetByAssetIdAsync(int assetId);

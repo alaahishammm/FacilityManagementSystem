@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FacilityManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class IntialMigration : Migration
+    public partial class intialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -73,7 +73,7 @@ namespace FacilityManagementSystem.Migrations
                     InstalledAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FacilityId = table.Column<int>(type: "int", nullable: false),
                     AreaId = table.Column<int>(type: "int", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1)
                 },
                 constraints: table =>
                 {

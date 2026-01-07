@@ -17,7 +17,7 @@ namespace FacilityManagementSystem.Infrastructure.Implementation
 
         public async Task<IEnumerable<Facility>> GetAllAsync()
         {
-            return await _context.facilities.ToListAsync();
+            return await _context.facilities.Include(f=>f.Area).ToListAsync();
 
         }
         public async Task<Facility?> GetByIdAsync(int id)

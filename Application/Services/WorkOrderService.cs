@@ -129,7 +129,7 @@ namespace FacilityManagementSystem.Application.Services
                 throw new InvalidOperationException("Cannot delete a completed work order.");
 
             if (workOrder.MaintenanceRequest != null)
-                workOrder.MaintenanceRequest.WorkOrder = null ;
+                workOrder.MaintenanceRequest.WorkOrder = null! ;
 
             await _workOrderRepo.DeleteAsync(workOrder);
 

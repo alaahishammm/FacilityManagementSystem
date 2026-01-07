@@ -18,7 +18,9 @@ namespace FacilityManagementSystem.Application.Mapping
             //user mappings
             CreateMap<User, UserReadDto>();
             CreateMap<UserCreateDto, User>();
-            CreateMap<UserUpdateDto, User>();
+            CreateMap<UserUpdateDto, User>()
+                .ForAllMembers(opt =>
+                    opt.Condition((src, dest, srcMember) => srcMember != null));
 
             //area mappings
             CreateMap<Area, AreaReadDto>();
@@ -31,22 +33,35 @@ namespace FacilityManagementSystem.Application.Mapping
             CreateMap<WorkOrderCreateDto, WorkOrder>()
                 .ForMember(dest => dest.Technician, opt => opt.MapFrom(src => src.TechnicianName))
 ;
-            CreateMap<WorkOrderUpdateDto, WorkOrder>();
+            CreateMap<WorkOrderUpdateDto, WorkOrder>()
+                .ForAllMembers(opt =>
+                    opt.Condition((src, dest, srcMember) => srcMember != null));
             //asset mappings
             CreateMap<Asset, AssetReadDto>();
             CreateMap<AssetCreateDto, Asset>();
-            CreateMap<AssetUpdateDto, Asset>();
+            // CreateMap<AssetUpdateDto, Asset>();
+            CreateMap<AssetUpdateDto, Asset>()
+                 .ForAllMembers(opt =>
+                     opt.Condition((src, dest, srcMember) => srcMember != null));
+
             //maintenance request mappings
             CreateMap<MaintenanceRequest,RequestReadDto>();
             CreateMap<RequestCreateDto, MaintenanceRequest>();
-               
-            CreateMap<RequestUpdateDto, MaintenanceRequest>();
-            //facility mappings
+            CreateMap<RequestUpdateDto, MaintenanceRequest>()
+             .ForAllMembers(opt =>
+                 opt.Condition((src, dest, srcMember) => srcMember != null));
+
+
+            // Facility mappings
             CreateMap<Facility, FacilityReadDto>();
             CreateMap<FacilityCreateDto, Facility>();
-            CreateMap<FacilityUpdateDto, Facility>();
+
+            CreateMap<FacilityUpdateDto, Facility>()
+                .ForAllMembers(opt =>
+                    opt.Condition((src, dest, srcMember) => srcMember != null));
+
             //
-     
+
             CreateMap<Asset, AssetReadDto>()
             .ForMember(dest => dest.Status,
                opt => opt.MapFrom(src => src.Status.ToString()));

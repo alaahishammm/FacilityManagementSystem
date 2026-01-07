@@ -40,9 +40,8 @@ namespace FacilityManagementSystem.Application.Services
             return _mapper.Map<IEnumerable<RequestReadDto>>(requests);
 
         }
-        public async Task CreateAsync(RequestCreateDto dto)
+        public async Task<RequestReadDto> CreateAsync(RequestCreateDto dto)
         {
-
             if (dto.AssetId.HasValue)
             {
                 var asset = await _assetRepo.GetByIdAsync(dto.AssetId.Value);
@@ -50,17 +49,17 @@ namespace FacilityManagementSystem.Application.Services
                     throw new KeyNotFoundException($"Asset with id {dto.AssetId.Value} not found.");
                 asset.Status = AssetStatus.NeedsMaintenance;
                 await _assetRepo.UpdateAsync(asset);
-
             }
-            
-            
+
             var request = _mapper.Map<MaintenanceRequest>(dto);
             request.CreatedAt = DateTime.UtcNow;
             await _requestRepo.CreateAsync(request);
-            
 
+           
+            return _mapper.Map<RequestReadDto>(request);
         }
-       
+
+
         public async Task  DeleteAsync(int id)
         {
             var existing = await _requestRepo.GetByIdAsync(id);

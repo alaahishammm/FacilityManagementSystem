@@ -24,14 +24,14 @@ namespace FacilityManagementSystem.Application.Services
             return  _mapper.Map<IEnumerable<AreaReadDto>>(areas);
         }
 
-        public async Task<IEnumerable<AreaReadDto>> GetByIdAsync(int id)
+        public async Task<AreaReadDto> GetByIdAsync(int id)
         {
             var area = await _areaRepo.GetByIdAsync(id);
             if (area == null)
 
                 throw new KeyNotFoundException($"Area with id {id} not found.");
 
-            return  _mapper.Map<IEnumerable<AreaReadDto>>(area);
+            return _mapper.Map<AreaReadDto>(area);
         }
        public async  Task<AreaReadDto> CreateAsync(AreaCreateDto dto)
         {
